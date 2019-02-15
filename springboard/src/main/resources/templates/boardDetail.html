@@ -1,0 +1,20 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+		<table border=1>
+			<tr th:each="b : ${board}">
+				<td>번호 :<input th:value="${b.boardNo}" type="text" name="boardNo"  readonly></td> 
+				<td>제목 : <input th:value="${b.boardTitle}" type="text" name="boardTitle" readonly></td>
+				<td>내용 : <input th:value="${b.boardContent}" type="text" name="boardContent" readonly></td>
+				<td>사용자 : <input th:value="${b.boardUser}" type="text" name="boardUser" readonly></td>
+				<td>날짜 : <input th:value="${b.boardDate}" type="text" name="boardDate" readonly></td>
+			</tr>
+			
+		</table>
+		<span><a href="boardList"> 돌아가기</a></span>
+</body> 
+</html>
+
+
+

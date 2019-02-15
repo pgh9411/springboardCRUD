@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 하나는 스키마,하나는 dtd  -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- mybatis 주소 가져온다 dtd  -->
+<mapper namespace="cafe.ebs.springboard.mapper.BoardMapper">
+	
+	<!-- 수정화면, 읽기(상세정보) -->
+	<select id="selectBoard"
+			parameterType="int"
+			resultType="cafe.ebs.springboard.vo.Board">
+			SELECT 
+				board_no as boardNo, 
+				board_pw as boardPw,
+				board_title as boardTitle,
+				board_content as boardContent,
+				board_user as boardUser, 
+				board_date as boardDate 
+			FROM board 
+			WHERE board_no=#{boardNo} 
+	</select>
+	<!-- 목록 -->
+	<select id="selectBoardList"
+			parameterType="java.util.Map"
+			resultType="cafe.ebs.springboard.vo.Board">
+			SELECT 
+				board_no as boardNo, 
+				board_title as boardTitle,
+				board_content as boardContent,
+				board_user as boardUser, 
+				board_date as boardDate 
+				
+			FROM board 
+			ORDER BY board_no
+			LIMIT #{startPage}, #{rowPerPage}
+	</select>
+	<!-- map은 인터페이스(해시맵)-->
+	
+	<!-- 총 갯수 -->
+	<select id="selectBoardCount"
+			resultType="int">
+			SELECT 
+				count(*) 
+			FROM board
+	</select>
+	
+	<!-- 추가하기 -->
+	<!-- insert,delete,update는 리절트타입 기본으로 int, 적지않는다-->
+	<insert id="insertBoard"
+			parameterType="cafe.ebs.springboard.vo.Board">
+			INSERT 
+			INTO board(board_pw, 
+						board_title, 
+						board_content, 
+						board_user, 
+						board_date) 
+			VALUES(#{boardPw},
+					#{boardTitle},
+					#{boardContent},
+					#{boardUser},
+					current_date())
+	</insert>
+	
+	<!-- 삭제하기 -->
+	<delete id="deleteBoard"
+			parameterType="cafe.ebs.springboard.vo.Board">
+			DELETE 
+			FROM board 
+			WHERE board_no=#{boardNo} AND board_pw=#{boardPw}
+	</delete>
+	
+	<!-- 수정하기 -->
+	<update id="updateBoard"
+			parameterType="cafe.ebs.springboard.vo.Board">
+			UPDATE board 
+			SET 
+				board_title=#{boardTitle}, 
+				board_content=#{boardContent}, 
+				board_user=#{boardUser}, 
+				board_date=#{boardDate} 
+			WHERE board_no = #{boardNo}
+	</update>
+</mapper>

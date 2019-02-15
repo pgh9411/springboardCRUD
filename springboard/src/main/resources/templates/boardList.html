@@ -1,0 +1,58 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+</head>
+<body>
+
+	<h1>BOARD LIST</h1>
+
+
+
+	<table border=1>
+		<thead>
+			<tr>
+				<th>boardNo</th>
+				<th>boardTitle</th>
+				<th>boardUser</th>
+				<th>boardDate</th>
+				<th>수정</th>
+				<th>삭제</th>
+
+			</tr>
+		</thead>
+
+
+		<tr th:each="b : ${map.get('list')}">
+			<td th:text="${b.boardNo}"></td>
+			<td>
+				<a th:href="@{/boardDetail(boardNo=${b.boardNo}, currentPage=${currentPage})}"> 
+				<th:block th:text="${b.boardTitle}"></th:block>
+				</a>
+			</td>
+			<td th:text="${b.boardUser}"></td>
+			<td th:text="${b.boardDate}"></td>
+			<td><a th:href="@{/modifyBoard(boardNo=${b.boardNo})}">수정</a></td>
+			<td><a th:href="@{/removeBoard(boardNo=${b.boardNo})}">삭제</a></td>
+		</tr>
+
+
+	</table>
+	
+	
+	<form>
+		<tr>
+			<td th:if="${currentPage > 1}">
+			<a th:href="@{/boardList(currentPage=1)}">[처음]</a>
+			<a th:href="@{/boardList(currentPage=${currentPage - 1})}">이전</a>
+			</td>
+			<td th:if="${currentPage < map.lastPage}">
+			<a th:href="@{/boardList(currentPage=${currentPage + 1})}">다음</a>
+			<a th:href="@{/boardList(currentPage=${map.lastPage})}">[끝]</a>
+			</td>
+		</tr>
+	</form>
+	<span><a href="boardAdd">게시글 입력</a></span>
+
+</body>
+</html>
