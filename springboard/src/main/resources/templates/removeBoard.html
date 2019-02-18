@@ -1,19 +1,23 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+<link rel="stylesheet" href="/css/bootstrap.css"> 
+
 </head>
 <body>
-	<form action="/removeBoard" method="post">
-		<table border=1>
+<div class="container">
+	<h1>REMOVE BOARD</h1>
+	<form action="/removeBoard" method="post" >
+		<table class="table table-striped table-hover">
 		
 			<tr th:each="b : ${board}">
-				<td>번호 :<input th:value="${b.boardNo}" type="text" name="boardNo"  readonly></td> 
-				<td>제목 : <input th:value="${b.boardTitle}" type="text" name="boardTitle"  readonly></td>
-				<td>비밀번호 : <input type="text" name="boardPw"></td>
-				<td>사용자 : <input th:value="${b.boardUser}" type="text" name="boardUser" readonly></td>
-				<td><input type="submit" value="삭제하기"></td>
+				<tr>
+					<td>비밀번호 : <input type="text" name="boardPw"></td>
+				<tr>
+				<td><input type="submit" value="삭제하기" class="btn btn-success"></td>
 			</tr>
 		</table>
 	</form> 
+</div>
 </body> 
 </html>
 

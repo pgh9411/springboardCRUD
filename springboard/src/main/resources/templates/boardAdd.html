@@ -1,15 +1,42 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
+	<link rel="stylesheet" href="/css/bootstrap.css"> 
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script>
+/* 	$(document).ready(()=>{
+		
+		
+		
+		$('boardAddBtn').click(()=>{
+			if(isNaN($('#boardPw').val())){
+				$('#pwHelper').text('pw는 숫자만 입력');
+				$('#boardPw').focus();
+			}else if($('boardPw').val().length<2){
+				$('#pwHelper').text('pw는 두글자 이상 입력');
+				$('#boardPw').focus();
+				
+			}else {
+				$('#pwHelper').text('');
+				$('#boardAddForm').submit();
+			}
+		})
+		
+	} */
+	
+	
+	</script>
 	</head>
 	<body>
-		<form action="/boardAdd" method="post">
-			<div>
-				<h2>등록</h2>
-			</div>
-				<table border=1>
+	<div class="container">
+	<h1>BOARD ADD</h1>
+	
+		<form action="/boardAdd" method="post" >
+
+				<table  class="table table-striped table-hover">
 				<tr>
 					<th>비밀번호</th>
-					<td><input id="boardPw" name="boardPw"/></td>
+					<td><input id="boardPw" name="boardPw" /></td>
 				</tr>	
 				<tr>
 					<th>제목</th>
@@ -17,15 +44,16 @@
 				</tr>	
 				<tr>
 					<th>내용</th>
-					<td><input id="boardContent" name="boardContent"/></td>
-				</tr>	
+					<td><input id="boardContent" name="boardContent" /></td>
+				</tr>
 				<tr>
 					<th>사용자</th>
-					<td><input id="boardUser" name="boardUser"/></td>
+					<td><input id="boardUser" name="boardUser" /></td>
 				</tr>
 				</table>
-				<input type="submit" value="등록" />
+				<input type="submit" value="등록" id="boardAddBtn" class="btn btn-success"/>
 		</form>
+	</div>
 	</body>
 
 </html>

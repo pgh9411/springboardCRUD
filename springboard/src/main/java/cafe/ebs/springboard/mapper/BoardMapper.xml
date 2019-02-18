@@ -79,6 +79,6 @@
 				board_content=#{boardContent}, 
 				board_user=#{boardUser}, 
 				board_date=#{boardDate} 
-			WHERE board_no = #{boardNo}
+			WHERE board_no = #{boardNo} AND board_pw=#{boardPw}
 	</update>
 </mapper>
