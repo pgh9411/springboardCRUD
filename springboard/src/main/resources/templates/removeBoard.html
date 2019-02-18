@@ -11,11 +11,16 @@
 		
 			<tr th:each="b : ${board}">
 				<tr>
+					<td>번호 :<input th:value="${board.boardNo}" type="text" name="boardNo"  readonly></td>
+				<tr>
+				<tr>
 					<td>비밀번호 : <input type="text" name="boardPw"></td>
 				<tr>
-				<td><input type="submit" value="삭제하기" class="btn btn-success"></td>
 			</tr>
 		</table>
+	<td><input type="submit" value="삭제하기" class="btn btn-success"></td>
+	<a th:href="@{/boardDetail(boardNo=${board.boardNo}, currentPage=${currentPage})}" >돌아가기</a>
+		
 	</form> 
 </div>
 </body> 

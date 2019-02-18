@@ -48,12 +48,12 @@
 	<form>
 		<tr>
 			<td th:if="${currentPage > 1}">
-			<a th:href="@{/boardList(currentPage=1)}">[처음]</a>
+			<a th:href="@{/boardList(currentPage=1)}" class="btn btn-success">처음</a>
 			<a th:href="@{/boardList(currentPage=${currentPage - 1})}">이전</a>
 			</td>
 			<td th:if="${currentPage < map.lastPage}">
 			<a th:href="@{/boardList(currentPage=${currentPage + 1})}">다음</a>
-			<a th:href="@{/boardList(currentPage=${map.lastPage})}">[끝]</a>
+			<a th:href="@{/boardList(currentPage=${map.lastPage})}" class="btn btn-success">끝</a>
 			</td>
 		</tr>
 	</form>
