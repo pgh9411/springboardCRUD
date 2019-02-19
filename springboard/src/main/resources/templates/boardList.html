@@ -26,7 +26,7 @@
 
 
 
-	<table id="page-top" class="table table-striped table-hover">
+	<table id="page-top" class="table table-striped table-hover text-white">
 		<thead>
 			<tr>
 				<th>boardNo</th>
@@ -39,7 +39,7 @@
 
 
 		<tr th:each="b : ${map.get('list')}">
-			<td th:text="${b.boardNo}"></td>
+			<td th:text="${b.boardNo}" ></td>
 			<td>
 				<a th:href="@{/boardDetail(boardNo=${b.boardNo}, currentPage=${currentPage})}"> 
 				<th:block th:text="${b.boardTitle}"></th:block>

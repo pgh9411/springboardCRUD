@@ -16,24 +16,40 @@
 
 <!-- Custom styles for this template -->
 <link href="css/new-age.min.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+	
+	/* 유효성 검사 */
+	$(document).ready(function(){
+		$('#boardRemoveBtn').click(function(){
+			$('#boardRemoveForm').submit(function(event){
+				if($('#boardPw').val().length<1){
+					$('#boardPw').attr('placeholder','비밀번호를 입력해주세요.');
+					$('#boardPw').focus();
+					return false;
+				}
+			});
+		});
+	});
+</script>
 </head>
 <body>
 <header class="masthead">
 <div class="container">
 	<h1>REMOVE BOARD</h1>
-	<form action="/removeBoard" method="post" >
-		<table class="table table-striped table-hover">
+	<form action="/removeBoard" method="post" id="boardRemoveForm">
+		<table class="table table-hover text-white">
 		
 			
 				<tr>
-					<td>번호 :<th:block th:text="${board.boardNo}" type="text" name="boardNo"  readonly></th:block></td>
+					<td>번호 :<th:block th:text="${board.boardNo}" type="text" name="boardNo" id="boardNo"  readonly></th:block></td>
 				<tr>
 				<tr>
-					<td>비밀번호 : <input type="text" name="boardPw"></td>
+					<td>비밀번호 : <input type="text" id="boardPw" name="boardPw"></td>
 				<tr>
 			
 		</table>
-	<td><input type="submit" value="삭제하기" class="btn btn-outline btn-xl js-scroll-trigger"></td>
+	<input type="submit" value="삭제하기" id="boardRemoveBtn"class="btn btn-outline btn-xl js-scroll-trigger">
 	<a th:href="@{/boardDetail(boardNo=${board.boardNo}, currentPage=${currentPage})}" >돌아가기</a>
 		
 	</form> 
