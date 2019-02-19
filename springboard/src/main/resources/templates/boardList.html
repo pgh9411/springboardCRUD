@@ -1,22 +1,32 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <head>
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
-<!-- 부가적인 테마 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+ <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  <!-- Custom fonts for this template -->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="vendor/simple-line-icons/css/simple-line-icons.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+
+  <!-- Plugin CSS -->
+  <link rel="stylesheet" href="device-mockups/device-mockups.min.css">
+
+  <!-- Custom styles for this template -->
+  <link href="css/new-age.min.css" rel="stylesheet">
+
 </head>
 <body>
+<header class="masthead">
 <div class="container">
 	<h1>BOARD LIST</h1>
 
 
 
-	<table class="table table-striped table-hover">
+	<table id="page-top" class="table table-striped table-hover">
 		<thead>
 			<tr>
 				<th>boardNo</th>
@@ -48,18 +58,19 @@
 	<form>
 		<tr>
 			<td th:if="${currentPage > 1}">
-			<a th:href="@{/boardList(currentPage=1)}" class="btn btn-success">처음</a>
+			<a th:href="@{/boardList(currentPage=1)}" class="btn btn-outline btn-xl js-scroll-trigger">처음</a>
 			<a th:href="@{/boardList(currentPage=${currentPage - 1})}">이전</a>
 			</td>
 			<td th:if="${currentPage < map.lastPage}">
 			<a th:href="@{/boardList(currentPage=${currentPage + 1})}">다음</a>
-			<a th:href="@{/boardList(currentPage=${map.lastPage})}" class="btn btn-success">끝</a>
+			<a th:href="@{/boardList(currentPage=${map.lastPage})}" class="btn btn-outline btn-xl js-scroll-trigger">끝</a>
 			</td>
 		</tr>
 	</form>
-	<span><a href="boardAdd" class="btn btn-success">게시글 입력</a></span>
-	</div>
 	
+	<a href="boardAdd" class="btn btn-outline btn js-scroll-trigger">게시글 입력</a>
+	</div>
+</header>	
 
 </body>
 </html>
