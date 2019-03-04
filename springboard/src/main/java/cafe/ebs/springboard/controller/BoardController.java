@@ -4,6 +4,8 @@ package cafe.ebs.springboard.controller;
 //import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import cafe.ebs.springboard.service.BoardService;
 import cafe.ebs.springboard.vo.Board;
+import cafe.ebs.springboard.vo.BoardRequest;
 
 @Controller
 public class BoardController {
@@ -70,9 +73,14 @@ public class BoardController {
     // 입력(액션) 요청
     // post로 입력받은 boardAdd는 board를 입력받아 입력액션을 한다
 	@PostMapping(value="/boardAdd")
-    public String boardAdd(Board board) {
+    public String boardAdd(BoardRequest boardRequest, HttpServletRequest request) {
     	//커맨드 객체 활용 위해 -> 필드=name(input type) -> setter
-        boardService.addBoard(board);
+		/*Service
+		 *1. board안에 fileList 분해하여 DB 들어갈 수 있는 형태
+		 *2. 파일저장 : 파일 경로
+		*/
+		String path = request.getSession().getServletContext().getRealPath("./upload");
+        boardService.addBoard(boardRequest, path);
         //addBoard 메서드에 board 객체를 입력값으로 받아 입력메서드를 실행한다
     	return "redirect:/boardList"; // 글입력후 "/boardList"로 리다이렉트(재요청)
     }
@@ -127,5 +135,7 @@ public class BoardController {
 		return "redirect:/boardList";
 		//삭제 액션 후 다시 리스트로 이동시킨다
 	}
+    
+    
 
 }
