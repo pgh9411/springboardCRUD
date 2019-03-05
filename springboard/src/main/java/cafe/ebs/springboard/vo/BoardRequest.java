@@ -2,9 +2,9 @@ package cafe.ebs.springboard.vo;
 
 import java.util.List;
 
-
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
-
+@Component
 public class BoardRequest {
     private int boardNo;
     private String boardPw;
@@ -13,6 +13,7 @@ public class BoardRequest {
     private String boardUser;
     private String boardDate;
     private List<MultipartFile> files;
+    
 	public int getBoardNo() {
 		return boardNo;
 	}

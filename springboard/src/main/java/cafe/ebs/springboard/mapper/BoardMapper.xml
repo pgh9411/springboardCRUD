@@ -49,6 +49,9 @@
 	<!-- insert,delete,update는 리절트타입 기본으로 int, 적지않는다-->
 	<insert id="insertBoard"
 			parameterType="cafe.ebs.springboard.vo.Board">
+			<selectKey resultType="int" keyProperty="boardNo" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
 			INSERT 
 			INTO board(board_pw, 
 						board_title, 

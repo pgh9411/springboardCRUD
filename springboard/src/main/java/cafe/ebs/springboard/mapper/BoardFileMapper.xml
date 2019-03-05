@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cafe.ebs.springboard.mapper.BoardFileMapper">
+	<insert id="boardfileInsert" parameterType="cafe.ebs.springboard.vo.BoardFile">
+		INSERT INTO
+			boardfile (
+				board_no,
+				file_name,
+				file_ext,
+				file_type,
+				file_size
+			)
+		VALUES (
+			#{boardNo},
+			#{fileName},
+			#{fileExt},
+			#{fileType},
+			#{fileSize}
+		)
+	</insert>
+	
+	<select id="boardfileSelect" parameterType="cafe.ebs.springboard.vo.Board" resultType="cafe.ebs.springboard.vo.BoardFile">
+		SELECT
+			file_name AS fileName,
+			file_ext AS fileExt,
+			file_size AS fileSize
+		FROM boardfile
+		WHERE board_no = #{boardNo}
+	</select>
+</mapper>

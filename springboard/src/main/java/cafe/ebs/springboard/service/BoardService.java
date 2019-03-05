@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import cafe.ebs.springboard.mapper.BoardFileMapper;
 import cafe.ebs.springboard.mapper.BoardMapper;
 import cafe.ebs.springboard.vo.Board;
 import cafe.ebs.springboard.vo.BoardFile;
@@ -22,7 +23,8 @@ import cafe.ebs.springboard.vo.BoardRequest;
 public class BoardService {
 	@Autowired
 	private BoardMapper boardMapper;
-	
+	@Autowired
+	private BoardFileMapper boardfileMapper;
 	
 	public Board getBoard(int boardNo) {
 		return boardMapper.selectBoard(boardNo);
@@ -80,7 +82,7 @@ public class BoardService {
 		 */
 		//1
 		Board board = new Board();
-		board.setBoardNo(boardRequest.getBoardNo());
+		
 		board.setBoardPw(boardRequest.getBoardPw());
 		board.setBoardTitle(boardRequest.getBoardTitle());
 		board.setBoardContent(boardRequest.getBoardContent());
@@ -103,6 +105,7 @@ public class BoardService {
 			boardFile.setFileExt("ext");
 			String fileName = UUID.randomUUID().toString();//파일이름 중복되지 않게 하려고 random 문자 toString으로 저장(문자열)
 			boardFile.setFileName("fileName");
+			boardfileMapper.boardfileInsert(boardFile);
 			//전체 작업이 롤백되면 파일삭제작업 직접!
 			
 			//3 파일 저장
